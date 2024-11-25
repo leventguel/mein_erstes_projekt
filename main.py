@@ -21,13 +21,13 @@ def meine_beispiel_funktion ():
 
 print("Die zurückgegebene: {}".format(meine_beispiel_funktion()))
 
-def eingabe_beispiel ():
-	meine_globale_variable = input("Bitte gib eine Zahl ein!: ")
+def anderes_beispiel ():
+	meine_globale_variable = 3
 	print("lokal ausgedruckt: ", meine_globale_variable)
-	return "Rückgabewert: " + meine_globale_variable
+	return "Rückgabewert: " + str(meine_globale_variable)
 
-print("Die Globale ist immernoch: ", meine_globale_variable) # hier wird 0 zurückgegeben
-print(eingabe_beispiel())
+print("Die Globale ist immer noch: ", meine_globale_variable) # hier wird 0 zurückgegeben
+print(anderes_beispiel())
 
 # Verschachtelte Namensräume
 def umschliessende ():
@@ -41,4 +41,33 @@ def umschliessende ():
 
 umschliessende()
 
+# Built-in Funktionen verwenden
 
+msg = "Die Kunst des Lebens besteht nicht darin, auf die Sonne zu warten, sondern im Regen zu tanzen."
+
+print(len(msg))
+
+vowels = ["a","e","i","o","u","ä","ö","ü"]
+
+print("Typ von vowels: ", type(vowels))
+
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print("Summe: " + str(sum(nums)))
+print("Maximum: " + str(max(nums)))
+print("Minimum: " + str(min(nums)))
+
+durcheinander = ["c", "d", "b", "g", "a", "m"]
+
+sortiert = sorted(durcheinander)
+
+print("Sortiert: ", sortiert)
+
+# Eingabe verarbeiten
+konvertiert = int(input("Bitte nur Ganze Zahl eingeben: "))
+print("Konvertiert:", konvertiert)
+print("Ist es eine Ganze Zahl ?: Antwort:", isinstance(konvertiert, int))
+
+konvertiert2 = int(float(input("Geben Sie bitte eine Zahl ein: ")))
+print("Hier ist kein Eingabefehler möglich")
+print("Konvertiert:", konvertiert2)
