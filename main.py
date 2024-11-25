@@ -49,7 +49,8 @@ print(len(msg))
 
 vowels = ["a","e","i","o","u","ä","ö","ü"]
 
-print("Typ von vowels: ", type(vowels))
+# Extraktion des Typs in <class 'list'>
+print("Typ von vowels: ", str(type(vowels)).split("'")[1])
 
 nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -64,10 +65,12 @@ sortiert = sorted(durcheinander)
 print("Sortiert: ", sortiert)
 
 # Eingabe verarbeiten
-konvertiert = int(input("Bitte nur Ganze Zahl eingeben: "))
+print("Bitte nur Ganze Zahl eingeben, sonst ist eine Fehlerausgabe möglich!")
+konvertiert = int(input("Eingabe: "))
 print("Konvertiert:", konvertiert)
 print("Ist es eine Ganze Zahl ?: Antwort:", isinstance(konvertiert, int))
 
 konvertiert2 = int(float(input("Geben Sie bitte eine Zahl ein: ")))
 print("Hier ist kein Eingabefehler möglich")
 print("Konvertiert:", konvertiert2)
+print("Ist es eine Ganze Zahl ?: Antwort:", isinstance(konvertiert2, int))
