@@ -28,3 +28,17 @@ def eingabe_beispiel ():
 
 print("Die Globale ist immernoch: ", meine_globale_variable) # hier wird 0 zurückgegeben
 print(eingabe_beispiel())
+
+# Verschachtelte Namensräume
+def umschliessende ():
+	hallo = 2
+	print(hallo)
+	def eingeschlossene ():
+		nonlocal hallo
+		hallo = 3
+		print(hallo)
+	eingeschlossene()
+
+umschliessende()
+
+
