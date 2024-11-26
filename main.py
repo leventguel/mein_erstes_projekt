@@ -244,3 +244,25 @@ def check_Eingabe():
     print("Ok, Ihre Eingabe ist gültig und ist nun vermerkt!")
 
 check_Eingabe()
+
+# Aufgabe 7.1
+Zahl = 3
+Gleitkommazahl = 3.1415
+Text = "Dies ist ein Text"
+Wahrheitswert = True or False
+
+# Aufgabe 7.2 ugly version
+print("ugly version\n")
+print(f'''\nTyp von Zahl ist:\t\t\t"{str(type(Zahl)).split("'")[1]}" 
+Typ von Gleitkommazahl ist:\t"{str(type(Gleitkommazahl)).split("'")[1]}" 
+Typ von Text ist:\t\t\t"{str(type(Text)).split("'")[1]}" 
+Typ von Wahrheitswert ist:\t"{str(type(Wahrheitswert)).split("'")[1]}"''')
+
+# Aufgabe 7.2 better version
+print("elegant version\n")
+print(f'''
+{"Typ von Zahl ist:":<30} {type(Zahl).__name__}
+{"Typ von Gleitkommazahl ist:":<30} {type(Gleitkommazahl).__name__}
+{"Typ von Text ist:":<30} {type(Text).__name__}
+{"Typ von Wahrheitswert ist:":<30} {type(Wahrheitswert).__name__}
+''')
