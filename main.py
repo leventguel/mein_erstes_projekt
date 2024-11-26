@@ -74,3 +74,23 @@ konvertiert2 = int(float(input("Geben Sie bitte eine Zahl ein: ")))
 print("Hier ist kein Eingabefehler möglich")
 print("Konvertiert:", konvertiert2)
 print("Ist es eine Ganze Zahl ?: Antwort:", isinstance(konvertiert2, int))
+
+# Teil 2 des Aufgabenblatts
+# Aufgabe 1
+startwert = 10
+zwischenwert = startwert + 5
+Endwert = zwischenwert * 2
+print(f'\nStartwert: {startwert} \nZwischenwert: {zwischenwert} \nEndwert: {Endwert}')
+
+# Aufgabe 2
+
+def gerade_ungerade (zahl):
+	if zahl % 2 == 0:
+		antwort = "gerade"
+	else:
+		antwort = "ungerade"
+	return antwort
+
+eingabe_Aufforderung = int(float(input("Bitte geben Sie eine Zahl ein: ")))
+print(f'Die Zahl {eingabe_Aufforderung} ist {gerade_ungerade(eingabe_Aufforderung)}')
+
