@@ -177,3 +177,22 @@ def alt_genug_zum_fahren():
     return antwort
 
 print(f'Bin ich alt genug zum Autofahren: {alt_genug_zum_fahren()}')
+
+def gleich_groß():
+    erste_Zahl = float(input("Bitte gib die erste Zahl ein: "))
+    zweite_Zahl = float(input("Bitte gib die zweite Zahl ein: "))
+
+    if (erste_Zahl + zweite_Zahl) % 2 == 0:
+        Summe = "gerade"
+    else:
+        Summe = "ungerade"
+
+    if erste_Zahl == zweite_Zahl:
+        antwort = "gleich"
+        print(f'Die Zahlen sind {antwort} und die Summe ist {Summe}')
+    elif erste_Zahl != zweite_Zahl:
+        antwort = max(erste_Zahl, zweite_Zahl)
+        print(f'{antwort} ist die größere und die Summe ist {Summe}')
+
+gleich_groß()
+
