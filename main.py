@@ -82,7 +82,7 @@ zwischenwert = startwert + 5
 Endwert = zwischenwert * 2
 print(f'\nStartwert: {startwert} \nZwischenwert: {zwischenwert} \nEndwert: {Endwert}')
 
-# Aufgabe 2
+# Aufgabe 2.1
 
 def gerade_ungerade (zahl):
 	if zahl % 2 == 0:
@@ -94,7 +94,7 @@ def gerade_ungerade (zahl):
 eingabe_Aufforderung = int(float(input("Bitte geben Sie eine Zahl ein: ")))
 print(f'Die Zahl {eingabe_Aufforderung} ist {gerade_ungerade(eingabe_Aufforderung)}')
 
-# Aufgabe 2.1
+# Aufgabe 2.2
 Ziel = 100
 def überprüfe_Nummer (zahl, vergleichszahl=Ziel):
 	if zahl > vergleichszahl:
@@ -113,7 +113,6 @@ print(f'Die Zahl {vergleich2} ist {überprüfe_Nummer(vergleich2)} {Ziel}')
 print(f'Die Zahl {Ziel} ist {überprüfe_Nummer(Ziel)} {Ziel}')
 
 # Aufgabe 2.3
-
 def check_password(password):
     # Fehlerliste
     errors = []
@@ -155,6 +154,7 @@ else:
     for message in messages:
         print(f"- {message}")
 
+# Aufgabe 2.4
 def zwischen(zahl, start, end):
     if zahl > start and zahl < end:
         antwort = "Ja"
@@ -166,11 +166,12 @@ print(f'Ist 50 zwischen 100 und 200 ? {zwischen(50, 100, 200)}')
 print(f'Ist 50 zwischen -100 und 100 ? {zwischen(50, -100, 100)}')
 print(f'Ist 50.5 zwischen 50 und 51 ? {zwischen(50.5, 50, 51)}')
 
+# Aufgabe 2.5
 def alt_genug_zum_fahren():
     alter = int(float(input("Bitte geben Sie ihr Alter ein: ")))
-    if alter > 18:
+    if alter >= 18:
         antwort = "Du darfst Auto fahren"
-    elif 16 < alter < 18:
+    elif 16 <= alter < 18:
         antwort = "Du darfst einen Führerschein machen"
     elif alter < 16:
         antwort = "Du bist zu jung für den Führerschein"
@@ -178,6 +179,7 @@ def alt_genug_zum_fahren():
 
 print(f'Bin ich alt genug zum Autofahren: {alt_genug_zum_fahren()}')
 
+# Aufgabe 2.6
 def gleich_groß():
     erste_Zahl = float(input("Bitte gib die erste Zahl ein: "))
     zweite_Zahl = float(input("Bitte gib die zweite Zahl ein: "))
@@ -196,3 +198,23 @@ def gleich_groß():
 
 gleich_groß()
 
+# Aufgabe 3
+Zitate = ["Carpe diem", "Alea iacta est", "Sapere aude", "Non scholae, sed vitae discimus",
+"Amor vincit omnia", "Errare humanum est","Festina lente", "Per aspera ad astra "]
+Vorname = "Levent"
+Nachname = "Guel"
+Ausbildung = "Fachinformatik in Richtung Anwendungsentwicklung"
+
+def index():
+    from random import randint
+    return randint(0, len(Zitate) - 1)
+
+def info():
+    print(f"{Vorname} {Nachname} ist in der Ausbildung für {Ausbildung}\nZitat: {Zitate[index()]}")
+
+info()
+
+# Aufgabe 4
+ein_Tabulator = "\t"
+ein_Zeilenumbruch = "\n"
+print(f"Hallo Tabulator {ein_Tabulator} mit {ein_Zeilenumbruch} Zeilenumbruch")
