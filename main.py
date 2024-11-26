@@ -217,4 +217,30 @@ info()
 # Aufgabe 4
 ein_Tabulator = "\t"
 ein_Zeilenumbruch = "\n"
-print(f"Hallo Tabulator {ein_Tabulator} mit {ein_Zeilenumbruch} Zeilenumbruch")
+print(f"Hallo Tabulator:{ein_Tabulator}mit{ein_Zeilenumbruch}Zeilenumbruch")
+
+# Aufgabe 5
+
+Name = input("Bitte geben Sie ihren Namen ein: ")
+Alter = int(input("Bitte geben Sie ihr Alter ein: "))
+Beruf = input("Bitte geben Sie ihr Beruf ein: ")
+
+print(f'Hallo {Name} vom Beruf {Beruf}')
+
+# Aufgabe 6
+
+def check_Eingabe():
+    Eingabe = input("Bitte geben Sie eine Zahl ein: ")
+    valid = Eingabe.isdigit()
+
+    while not valid:
+        Eingabe = input("Bitte geben Sie die Zahl erneut ein: ")
+        valid = Eingabe.isdigit()
+        if not valid:
+            print("Leider ist ihre Eingabe ungültig, versuchen Sie es erneut!")
+        else:
+            break
+
+    print("Ok, Ihre Eingabe ist gültig und ist nun vermerkt!")
+
+check_Eingabe()
