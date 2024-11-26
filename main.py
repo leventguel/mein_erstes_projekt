@@ -106,7 +106,51 @@ def überprüfe_Nummer (zahl, vergleichszahl=Ziel):
 	return antwort
 
 vergleich = 99
+vergleich2 = 101
 
 print(f'Die Zahl {vergleich} ist {überprüfe_Nummer(vergleich)} {Ziel}')
+print(f'Die Zahl {vergleich2} ist {überprüfe_Nummer(vergleich2)} {Ziel}')
+print(f'Die Zahl {Ziel} ist {überprüfe_Nummer(Ziel)} {Ziel}')
 
+# Aufgabe 2.3
 
+def check_password(password):
+    # Fehlerliste
+    errors = []
+
+    # Länge prüfen
+    if len(password) < 8:
+        errors.append("Das Passwort muss mindestens 8 Zeichen lang sein.")
+
+    # Prüfen, ob das Passwort nicht mit einer Zahl beginnt
+    if password[0].isdigit():
+        errors.append("Das Passwort darf nicht mit einer Zahl beginnen.")
+
+    # Sonderzeichen prüfen (mindestens zwei)
+    special_characters = "!@#$%^&*(),.?\":{}|<>"
+    special_count = sum(1 for char in password if char in special_characters)
+    if special_count < 2:
+        errors.append("Das Passwort muss mindestens zwei Sonderzeichen enthalten.")
+
+    # Kombination aus Buchstaben und Sonderzeichen prüfen
+    has_letter = any(char.isalpha() for char in password)
+    has_special = any(char in special_characters for char in password)
+    if not has_letter or not has_special:
+        errors.append("Das Passwort muss Buchstaben und Sonderzeichen kombinieren.")
+
+    # Rückmeldung geben
+    if errors:
+        return False, errors
+    return True, ["Das Passwort erfüllt alle Kriterien."]
+
+# Benutzer auffordern
+password = input("Bitte geben Sie ein Passwort ein: ")
+valid, messages = check_password(password)
+
+# Ergebnisse anzeigen
+if valid:
+    print(messages[0])
+else:
+    print("Das Passwort ist ungültig:")
+    for message in messages:
+        print(f"- {message}")
