@@ -154,6 +154,79 @@ else:
     for message in messages:
         print(f"- {message}")
 
+
+try:
+    from getpass import getpass  # Versuch, getpass zu nutzen
+except ImportError:
+    getpass = None
+
+import os
+if os.name == "nt":
+    import msvcrt
+
+    def hidden_input_windows(prompt=""):
+        if getpass:
+            print("DEBUG: Verwende getpass für die Passworteingabe.")
+            return getpass(prompt)
+        print(prompt, end="", flush=True)
+        password = ""
+        while True:
+            print("DEBUG: Warten auf Eingabe (msvcrt)...")
+            char = msvcrt.getch()
+            print(f"DEBUG: Eingabe erhalten: {char}")
+            if char in {b"\r", b"\n"}:  # Enter-Taste
+                print()
+                break
+            elif char in {b"\x08", b"\x7f"}:  # Backspace
+                if password:
+                    password = password[:-1]
+                    print("\b \b", end="", flush=True)
+            else:
+                password += char.decode("utf-8")
+                print("*", end="", flush=True)
+        return password
+
+    hidden_input = hidden_input_windows
+
+else:
+    import sys
+    import tty
+    import termios
+
+    def hidden_input_unix(prompt=""):
+        if getpass:
+            print("DEBUG: Verwende getpass für die Passworteingabe.")
+            return getpass(prompt)
+        print(prompt, end="", flush=True)
+        password = ""
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            while True:
+                print("DEBUG: Warten auf Eingabe (Unix)...")
+                char = sys.stdin.read(1)
+                print(f"DEBUG: Eingabe erhalten: {char}")
+                if char in ("\n", "\r"):  # Enter-Taste
+                    print()
+                    break
+                elif char in ("\x08", "\x7f"):  # Backspace
+                    if password:
+                        password = password[:-1]
+                        print("\b \b", end="", flush=True)
+                else:
+                    password += char
+                    print("*", end="", flush=True)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return password
+
+    hidden_input = hidden_input_unix
+
+# Test
+password = hidden_input("Bitte geben Sie Ihr Passwort ein: ")
+print(f"Eingegebenes Passwort: {password}")
+
 # Aufgabe 2.4
 def zwischen(zahl, start, end):
     if zahl > start and zahl < end:
@@ -294,3 +367,48 @@ def Abfrage():
         print(e)
 
 print(Abfrage())
+
+# Aufgabenzettel teil 3
+
+# Aufgabe 1
+läufer = 1
+end = 10
+while läufer < end:
+    print(läufer)
+    läufer += 1
+
+def zähler_liste(end, start=0):
+    läufer = start
+    antwort = []
+    while läufer < end:
+        antwort.append(läufer)
+        läufer +=1
+    return antwort
+
+print(zähler_liste(10))
+
+# Aufgabe 2
+def Summe():
+    Summe = 0
+    while True:
+        zahl = input("Bitte geben Sie eine Zahl ein: ")
+        if zahl.isdigit:
+            Summe += float(zahl)
+        else:
+            "Leider ist ihre Eingabe keine Zahl"
+        if zahl == "0":
+            break
+    print("Die Summe ist: ")
+    return Summe
+
+# Aufgabe 3
+
+def überprüfe_passwort():
+    passwort_eingabe = input("Bitte password eingeben: ")
+    print(f"Hinweis: {check_password(passwort_eingabe)[1][0]}")
+    while passwort_eingabe != "@3rl!abc":
+        passwort_eingabe = input("Bitte geben Sie das richtige Passwort ein!: ")
+        print(f"Hinweis: {check_password(passwort_eingabe)[1][0]}")
+        print("Erfolg! ihr passwort ist validiert!")
+
+überprüfe_passwort()
