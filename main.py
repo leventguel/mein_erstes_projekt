@@ -15,29 +15,29 @@ meine_globale_variable = 0 # eine globale variable
 print("Die Globale: {}".format(meine_globale_variable))
 
 def meine_beispiel_funktion ():
-	meine_globale_variable = 1
-	print("Die lokale ausgedruckte: ", meine_globale_variable)
-	return meine_globale_variable
+    meine_globale_variable = 1
+    print("Die lokale ausgedruckte: ", meine_globale_variable)
+    return meine_globale_variable
 
 print("Die zurückgegebene: {}".format(meine_beispiel_funktion()))
 
 def anderes_beispiel ():
-	meine_globale_variable = 3
-	print("lokal ausgedruckt: ", meine_globale_variable)
-	return "Rückgabewert: " + str(meine_globale_variable)
+    meine_globale_variable = 3
+    print("lokal ausgedruckt: ", meine_globale_variable)
+    return "Rückgabewert: " + str(meine_globale_variable)
 
 print("Die Globale ist immer noch: ", meine_globale_variable) # hier wird 0 zurückgegeben
 print(anderes_beispiel())
 
 # Verschachtelte Namensräume
 def umschliessende ():
-	hallo = 2
-	print(hallo)
-	def eingeschlossene ():
-		nonlocal hallo
-		hallo = 3
-		print(hallo)
-	eingeschlossene()
+    hallo = 2
+    print(hallo)
+    def eingeschlossene ():
+        nonlocal hallo
+        hallo = 3
+        print(hallo)
+    eingeschlossene()
 
 umschliessende()
 
@@ -85,11 +85,11 @@ print(f'\nStartwert: {startwert} \nZwischenwert: {zwischenwert} \nEndwert: {Endw
 # Aufgabe 2.1
 
 def gerade_ungerade (zahl):
-	if zahl % 2 == 0:
-		antwort = "gerade"
-	else:
-		antwort = "ungerade"
-	return antwort
+    if zahl % 2 == 0:
+        antwort = "gerade"
+    else:
+        antwort = "ungerade"
+    return antwort
 
 eingabe_Aufforderung = int(float(input("Bitte geben Sie eine Zahl ein: ")))
 print(f'Die Zahl {eingabe_Aufforderung} ist {gerade_ungerade(eingabe_Aufforderung)}')
@@ -97,13 +97,13 @@ print(f'Die Zahl {eingabe_Aufforderung} ist {gerade_ungerade(eingabe_Aufforderun
 # Aufgabe 2.2
 Ziel = 100
 def überprüfe_Nummer (zahl, vergleichszahl=Ziel):
-	if zahl > vergleichszahl:
-		antwort = "größer"
-	elif zahl < vergleichszahl:
-		antwort = "kleiner"
-	elif zahl == vergleichszahl:
-		antwort = "gleich"
-	return antwort
+    if zahl > vergleichszahl:
+        antwort = "größer"
+    elif zahl < vergleichszahl:
+        antwort = "kleiner"
+    elif zahl == vergleichszahl:
+        antwort = "gleich"
+    return antwort
 
 vergleich = 99
 vergleich2 = 101
@@ -293,7 +293,6 @@ ein_Zeilenumbruch = "\n"
 print(f"Hallo Tabulator:{ein_Tabulator}mit{ein_Zeilenumbruch}Zeilenumbruch")
 
 # Aufgabe 5
-
 Name = input("Bitte geben Sie ihren Namen ein: ")
 Alter = int(input("Bitte geben Sie ihr Alter ein: "))
 Beruf = input("Bitte geben Sie ihr Beruf ein: ")
@@ -351,7 +350,6 @@ Zahl3 = int(String2)
 print(f"\n{Zahl,Gleitkommazahl,Gleitkommazahl2, Zahl2, String1, String2, Zahl3}")
 
 # Aufgabe 9
-
 def Abfrage():
     try:
         zahl_Eingabe = input("Bitte geben Sie eine Zahl ein: ")
@@ -368,7 +366,7 @@ def Abfrage():
 
 print(Abfrage())
 
-# Aufgabenzettel teil 3
+# Aufgabenzettel Teil 3
 
 # Aufgabe 1
 läufer = 1
@@ -402,7 +400,6 @@ def Summe():
     return Summe
 
 # Aufgabe 3
-
 def überprüfe_passwort():
     gesichertes_passwort = "@3rl!abc"
     passwort_eingabe = input("Bitte password eingeben: ")
@@ -415,7 +412,6 @@ def überprüfe_passwort():
 überprüfe_passwort()
 
 # Aufgabe 4
-
 for i in range(1,11):
     print(i)
 
@@ -458,7 +454,6 @@ def jede_5te(bis):
 jede_5te(20)
 
 # Aufgabe 6
-
 def rechteck_mit_sternen(row, col, char="*"):
     for i in range(row):
         print(char * col)
@@ -495,11 +490,104 @@ result = while_generator(10)
 list(result)
 
 # Aufgabe 8
-
 mList = ["Anna", "Max", "Tom", "Lisa"]
-
 mList.append("Marie")
-
 mList.remove("Tom")
-
 len(mList)
+
+# Aufgabe 9
+num_list = [5,3,8,1,2]
+num_list.sort()
+num_list
+
+num_list = [5,3,8,1,2]
+num_list.sort(reverse=True)
+num_list
+
+num_list = [5,3,8,1,2]
+num_list.reverse()
+num_list
+
+# Aufgabe 10
+num_list2 = [1,2,3,4,5]
+num_list2.append(6)
+num_list2.insert(0, 0)
+num_list2
+num_list2.count(3)
+
+# Aufgabe 11
+die_liste = [10, 20, 30, 40, 50]
+
+def iter_list(list):
+    for i in list:
+        print(i)
+
+iter_list(die_liste)
+
+# Aufgabe 12
+def sum_list(list):
+    summe = 0
+    for i in list:
+        summe += i
+    return summe
+
+# Aufgabe 13
+my_string = "Hello, World!"
+
+def iter_string(string):
+    for char in string:
+        print(char)
+
+# Aufgabe 14
+my_nums = [5,6,7,8,9,10,11,12,13]
+
+def filter_list1(lst):
+    for i in lst:
+        if i < 10:
+            pass
+        else:
+            print(i)
+
+filter_list1(my_nums)
+
+def filter_list(lst, op="<", num=0):
+    for i in lst:
+        if op=="<":
+            condition = i < num
+        elif op==">":
+            condition = i > num
+        elif op=="<=":
+            condition = i <= num
+        elif op==">=":
+            condition = i >= num
+        elif op=="==":
+            condition = i==num
+        elif op=="!=":
+            condition = i!=num
+        else:
+            raise ValueError(f"Unsupported operator: {op}")
+
+        if not condition:
+            print(i)
+
+filter_list(my_nums, "<", 10)
+
+# Aufgabe 13
+def index_and_value(lst):
+    index = 0
+    for elem in lst:
+        print(f'index: {index} value: {elem}')
+        index +=1
+
+def index_and_value2(lst):
+    for index in range(len(lst)):
+        print(f'index: {index} value: {lst[index]}')
+
+# Aufgabe 14
+def index_and_value3(lst):
+    for index, elem in enumerate(lst):
+        print(f'index: {index} value: {elem}')
+
+def index_and_value4(lst, start=0):
+    for index, elem in zip(range(start, start + len(lst)), lst):
+        print(f'index: {index} value: {elem}')
