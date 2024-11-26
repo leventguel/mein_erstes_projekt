@@ -404,11 +404,102 @@ def Summe():
 # Aufgabe 3
 
 def überprüfe_passwort():
+    gesichertes_passwort = "@3rl!abc"
     passwort_eingabe = input("Bitte password eingeben: ")
     print(f"Hinweis: {check_password(passwort_eingabe)[1][0]}")
-    while passwort_eingabe != "@3rl!abc":
+    while passwort_eingabe != gesichertes_passwort:
         passwort_eingabe = input("Bitte geben Sie das richtige Passwort ein!: ")
         print(f"Hinweis: {check_password(passwort_eingabe)[1][0]}")
         print("Erfolg! ihr passwort ist validiert!")
 
 überprüfe_passwort()
+
+# Aufgabe 4
+
+for i in range(1,11):
+    print(i)
+
+for i in range(10):
+    print(i+1)
+
+def zähler_0_basiert(zahl): # 0 basierter zähler
+    for i in range(zahl):
+        print(i)
+
+zähler_0_basiert(10)
+
+def zähler_1_basiert(zahl): # 1 basierter zähler
+    for i in range(zahl):
+        print(i+1)
+
+zähler_1_basiert(10)
+
+# Aufgabe 5
+for i in range(21):
+    if i % 2 == 0:
+        print(i)
+
+for i in range(21):
+    if i % 5 == 0:
+        print(i)
+
+def gerade_zahlen(bis):
+    for i in range(bis+1):
+        if i % 2 == 0:
+            print(i)
+
+gerade_zahlen(20)
+
+def jede_5te(bis):
+    for i in range(bis+1):
+        if i % 5 == 0:
+            print(i)
+
+jede_5te(20)
+
+# Aufgabe 6
+
+def rechteck_mit_sternen(row, col, char="*"):
+    for i in range(row):
+        print(char * col)
+
+rechteck_mit_sternen(3, 7, "#")
+
+# Aufgabe 7
+for i in range(10, 0, -1):
+    print(i)
+
+läufer = 10
+end = 0
+while läufer > end:
+    print(läufer)
+    läufer -= 1
+
+def rückwärts_zähler1(von, bis=0):
+    for i in range(von, bis, -1):
+        print(i)
+
+def rückwärts_zähler2(von, bis=0):
+    läufer = von
+    end = bis
+    while läufer > end:
+        print(läufer)
+        läufer -= 1
+
+def while_generator(start):
+    while start > 0:
+        yield start
+        start -= 1
+
+result = while_generator(10)
+list(result)
+
+# Aufgabe 8
+
+mList = ["Anna", "Max", "Tom", "Lisa"]
+
+mList.append("Marie")
+
+mList.remove("Tom")
+
+len(mList)
