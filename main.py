@@ -154,3 +154,26 @@ else:
     print("Das Passwort ist ungültig:")
     for message in messages:
         print(f"- {message}")
+
+def zwischen(zahl, start, end):
+    if zahl > start and zahl < end:
+        antwort = "Ja"
+    else:
+        antwort = "Nein"
+    return antwort
+
+print(f'Ist 50 zwischen 100 und 200 ? {zwischen(50, 100, 200)}')
+print(f'Ist 50 zwischen -100 und 100 ? {zwischen(50, -100, 100)}')
+print(f'Ist 50.5 zwischen 50 und 51 ? {zwischen(50.5, 50, 51)}')
+
+def alt_genug_zum_fahren():
+    alter = int(float(input("Bitte geben Sie ihr Alter ein: ")))
+    if alter > 18:
+        antwort = "Du darfst Auto fahren"
+    elif 16 < alter < 18:
+        antwort = "Du darfst einen Führerschein machen"
+    elif alter < 16:
+        antwort = "Du bist zu jung für den Führerschein"
+    return antwort
+
+print(f'Bin ich alt genug zum Autofahren: {alt_genug_zum_fahren()}')
