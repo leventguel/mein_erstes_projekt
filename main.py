@@ -94,3 +94,19 @@ def gerade_ungerade (zahl):
 eingabe_Aufforderung = int(float(input("Bitte geben Sie eine Zahl ein: ")))
 print(f'Die Zahl {eingabe_Aufforderung} ist {gerade_ungerade(eingabe_Aufforderung)}')
 
+# Aufgabe 2.1
+Ziel = 100
+def überprüfe_Nummer (zahl, vergleichszahl=Ziel):
+	if zahl > vergleichszahl:
+		antwort = "größer"
+	elif zahl < vergleichszahl:
+		antwort = "kleiner"
+	elif zahl == vergleichszahl:
+		antwort = "gleich"
+	return antwort
+
+vergleich = 99
+
+print(f'Die Zahl {vergleich} ist {überprüfe_Nummer(vergleich)} {Ziel}')
+
+
