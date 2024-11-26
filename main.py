@@ -266,3 +266,31 @@ print(f'''
 {"Typ von Text ist:":<30} {type(Text).__name__}
 {"Typ von Wahrheitswert ist:":<30} {type(Wahrheitswert).__name__}
 ''')
+
+# Aufgabe 8
+Zahl = 8
+Gleitkommazahl = float(Zahl)
+Gleitkommazahl2 = 3.14
+Zahl2 = int(Gleitkommazahl2)
+String1 = str(Gleitkommazahl)
+String2 = str(Zahl2)
+Zahl3 = int(String2)
+print(f"\n{Zahl,Gleitkommazahl,Gleitkommazahl2, Zahl2, String1, String2, Zahl3}")
+
+# Aufgabe 9
+
+def Abfrage():
+    try:
+        zahl_Eingabe = input("Bitte geben Sie eine Zahl ein: ")
+        valid = zahl_Eingabe.isdigit()
+
+        if not valid:
+            print("Ihre Eingabe ist ungültig")
+        else:
+            zahl = int(zahl_Eingabe)
+            return zahl/2
+
+    except Exeption as e:
+        print(e)
+
+print(Abfrage())
