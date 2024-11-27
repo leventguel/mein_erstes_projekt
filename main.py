@@ -351,20 +351,49 @@ print(f"\n{Zahl,Gleitkommazahl,Gleitkommazahl2, Zahl2, String1, String2, Zahl3}"
 
 # Aufgabe 9
 def Abfrage():
-    try:
-        zahl_Eingabe = input("Bitte geben Sie eine Zahl ein: ")
-        valid = zahl_Eingabe.isdigit()
-
-        if not valid:
-            print("Ihre Eingabe ist ungültig")
-        else:
+    while True:
+        try:
+            zahl_Eingabe = input("Bitte geben Sie eine Zahl ein: ")
             zahl = int(zahl_Eingabe)
-            return zahl/2
 
-    except Exeption as e:
-        print(e)
+            if zahl < 0:
+                print("Die Zahl darf nicht negativ sein.")
+                continue  # Neue Eingabe anfordern
+
+            return zahl / 2  # Erfolgreiche Eingabe -> Ergebnis zurückgeben
+
+        except ValueError:
+            print("Ihre Eingabe ist ungültig. Bitte geben Sie eine ganze Zahl ein.")
 
 print(Abfrage())
+
+# mit benutzerdefinierter Exception
+class InvalidInputError(Exception):
+    """Eine benutzerdefinierte Exception für ungültige Eingaben."""
+
+    def __init__(self, input_value, message="Ungültige Eingabe erkannt"):
+        self.input_value = input_value
+        self.message = message
+        super().__init__(message)
+
+    def __str__(self):
+        return f"{self.message}: {self.input_value}"
+
+def check_input(value):
+    if not isinstance(value, int):
+        raise InvalidInputError(value, "Eingabe muss ein Integer sein")
+    elif value < 0:
+        raise InvalidInputError(value, "Eingabe darf nicht negativ sein")
+    return value
+
+abfrage2 = input("Bitte geben Sie eine Zahl ein:")
+
+# Test der benutzerdefinierten Exception
+try:
+    check_input(abfrage2)  # Ungültige Eingabe
+except InvalidInputError as e:
+    print(f"Fehler: {e}")
+
 
 # Aufgabenzettel Teil 3
 
