@@ -1,4 +1,4 @@
-""" Literale """
+terale """
 123
 22.01
 "Hello"
@@ -620,3 +620,4 @@ def index_and_value3(lst):
 def index_and_value4(lst, start=0):
     for index, elem in zip(range(start, start + len(lst)), lst):
         print(f'index: {index} value: {elem}')
+
