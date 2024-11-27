@@ -1,3 +1,5 @@
+# Aufgabenblatt Python mit Datenbanken
+# Aufgabe 7
 import sqlite3
 
 # Verbindung zur SQLite-Datenbank herstellen

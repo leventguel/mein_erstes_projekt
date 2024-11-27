@@ -1,3 +1,5 @@
+# Aufgabenblatt Python mit Datenbanken
+# Aufgabe 8
 import hashlib
 import os
 import sqlite3
