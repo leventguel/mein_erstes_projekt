@@ -13,8 +13,8 @@ def create_benutzer():
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS "Benutzer" (
                 "Id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
-                "name" TEXT NOT NULL UNIQUE,
-                "email" TEXT UNIQUE,
+                "name" TEXT NOT NULL UNIQUE CHECK(length(name) <= 100),
+                "email" TEXT UNIQUE CHECK(length(email) <= 255),
                 "LebensAlter" INTEGER NOT NULL
             );
         ''')
@@ -103,20 +103,66 @@ def get_benutzer(filter_criteria="LebensAlter > 25"):
 
 
 # Aufgabe 3
-# Funktion, um die Benutzereingaben zu sammeln (interaktive AbfrLebensAlter)
+# Eingabe validierung
+def validate_name(name_input):
+    if len(name_input) > 100:
+        return "Der Name darf maximal 100 Zeichen lang sein."
+    elif not name_input:
+        return "Der Name darf nicht leer sein."
+    return None  # Kein Fehler
+
+def validate_email(email_input):
+    if len(email_input) > 255:
+        return "Die E-Mail darf maximal 255 Zeichen lang sein."
+    elif not email_input:
+        return "Die E-Mail darf nicht leer sein."
+    elif "@" not in email_input or email_input.count("@") != 1:
+        return "Ungültige E-Mail-Adresse. Es muss genau ein '@' enthalten sein."
+    elif "." not in email_input.split("@")[1]:
+        return "Ungültige E-Mail-Adresse. Der Domain-Teil muss einen Punkt enthalten (z. B. '.com')."
+    elif email_input.startswith("@") or email_input.endswith("@"):
+        return "Ungültige E-Mail-Adresse. Das '@' darf nicht am Anfang oder Ende stehen."
+    return None  # Kein Fehler
+
+def validate_lebensalter(lebensalter_input):
+    try:
+        lebensalter = int(lebensalter_input)
+        if lebensalter < 0:
+            return "Das LebensAlter darf nicht negativ sein."
+        return lebensalter  # Gültiges Alter zurückgeben
+    except ValueError:
+        return "Bitte geben Sie eine gültige Zahl für das LebensAlter ein."
+
+# Funktion, um die Benutzereingaben zu sammeln (interaktive Abfrage)
 def input_user_data():
     print("Bitte geben Sie die folgenden Informationen ein:")
-    name = input("Name: ")
-    email = input("E-Mail: ")
-    while True:
-        try:
-            LebensAlter = int(input("LebensAlter: "))
-            if LebensAlter < 0:
-                print("Das LebensAlter darf nicht negativ sein. Bitte erneut versuchen.")
-                continue
-            break
-        except ValueError:
-            print("Bitte geben Sie eine gültige Zahl für das LebensAlter ein.")
+    name, email, LebensAlter = None, None, None
+
+    while not (name and email and LebensAlter is not None):
+        if not name:
+            name_input = input("Name: ").strip()
+            error = validate_name(name_input)
+            if error:
+                print(error)
+            else:
+                name = name_input
+
+        if not email:
+            email_input = input("E-Mail: ").strip()
+            error = validate_email(email_input)
+            if error:
+                print(error)
+            else:
+                email = email_input
+
+        if LebensAlter is None:
+            lebensalter_input = input("LebensAlter: ").strip()
+            result = validate_lebensalter(lebensalter_input)
+            if isinstance(result, str):  # Fehlernachricht
+                print(result)
+            else:
+                LebensAlter = result
+
     return name, email, LebensAlter
 
 # Funktion zum Einfügen von Benutzerdaten (interaktiv) mit Überprüfung auf Duplikate
