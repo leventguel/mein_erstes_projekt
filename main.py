@@ -52,7 +52,7 @@ vowels = ["a","e","i","o","u","ä","ö","ü"]
 # Extraktion des Typs in <class 'list'>
 print("Typ von vowels: ", str(type(vowels)).split("'")[1])
 
-nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+nums = [i+1 for i in range(10)]
 
 print("Summe: " + str(sum(nums)))
 print("Maximum: " + str(max(nums)))
