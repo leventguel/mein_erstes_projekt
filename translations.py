@@ -1,30 +1,32 @@
 MENU_TRANSLATIONS = {
     "en": {
         "menu_title": "Poem Management System",
-        "add_poem": "1. Add a New Poem",
-        "show_all": "2. Show All Poems",
-        "delete_poem": "3. Delete a Poem",
-        "change_language": "4. Change Language",
-        "exit": "5. Exit",
-        "choose_action": "Choose an action (1-5): "
+        "add_poem": "Add a New Poem",
+        "show_all": "Show All Poems",
+        "delete_poem": "Delete a Poem",
+        "change_language": "Change Language",
+        "file_import": "Import Poem from File",
+        "exit": "Exit",
+        "choose_action": "Choose an action (1-7): ",
     },
     "de": {
         "menu_title": "Gedichtverwaltungssystem",
-        "add_poem": "1. Neues Gedicht hinzufügen",
-        "show_all": "2. Alle Gedichte anzeigen",
-        "delete_poem": "3. Gedicht löschen",
-        "change_language": "4. Sprache ändern",
-        "exit": "5. Beenden",
-        "choose_action": "Wählen Sie eine Aktion aus (1-5): "
+        "add_poem": "Neues Gedicht hinzufügen",
+        "show_all": "Alle Gedichte anzeigen",
+        "delete_poem": "Gedicht löschen",
+        "change_language": "Sprache ändern",
+        "file_import": "Gedicht aus Datei importieren",
+        "exit": "Beenden",
+        "choose_action": "Wählen Sie eine Aktion aus (1-7): ",
     },
     "fr": {
         "menu_title": "Système de gestion des poèmes",
-        "add_poem": "1. Ajouter un nouveau poème",
-        "show_all": "2. Afficher tous les poèmes",
-        "delete_poem": "3. Supprimer un poème",
-        "change_language": "4. Changer de langue",
-        "exit": "5. Quitter",
-        "choose_action": "Choisissez une action (1-5): "
+        "add_poem": "Ajouter un nouveau poème",
+        "show_all": "Afficher tous les poèmes",
+        "delete_poem": "Supprimer un poème",
+        "change_language": "Changer de langue",
+        "file_import": "Importer un poème depuis un fichier",
+        "exit": "Quitter",
+        "choose_action": "Choisissez une action (1-7): ",
     },
-    # Additional languages can be added here
 }
