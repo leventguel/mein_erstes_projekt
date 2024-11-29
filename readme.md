@@ -24,11 +24,18 @@ The **Poem Management System** is a Python-based application designed to create,
 
 - Python 3.8 or later
 - Required libraries (install via pip):
-  - `tkinter` (built-in with Python, includes `ttk` for advanced widgets)
+
   - `prompt_toolkit`
-  - `sqlalchemy`
-  - `pysqlite3`
   - `langdetect`
+
+### Internal (Built-in) Dependencies
+
+These dependencies are part of Python's standard library and require no additional installation:
+
+    -`tkinter`: (built-in with Python, includes ttk for advanced widgets)
+    -`sqlite3`: Provides database management for storing and retrieving poems.
+    -`os`: For file and path operations.
+    -`sys`: Enables system-specific parameters and functions.
 
 ### Installation
 
