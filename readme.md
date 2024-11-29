@@ -28,6 +28,7 @@ The **Poem Management System** is a Python-based application designed to create,
   - `prompt_toolkit`
   - `sqlalchemy`
   - `pysqlite3`
+  - `langdetect`
 
 ### Installation
 
