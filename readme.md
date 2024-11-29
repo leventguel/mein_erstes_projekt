@@ -24,8 +24,10 @@ The **Poem Management System** is a Python-based application designed to create,
 
 - Python 3.8 or later
 - Required libraries (install via pip):
-  - `tkinter` (built-in with Python)
-  - `ttk` (for advanced widgets)
+  - `tkinter` (built-in with Python, includes `ttk` for advanced widgets)
+  - `prompt_toolkit`
+  - `sqlalchemy`
+  - `pysqlite3`
 
 ### Installation
 
