@@ -65,22 +65,20 @@ CLI Mode:
 In the CLI version, the data will be displayed in the terminal, and you can perform database operations by choosing the available options in the prompt. (Currently there's no unified CLI Interface).
 
 File Structure:
-|--src:
-|   |--	main:
-|	  |--java:
-|	       |--lf8:
-|		-a----        13.12.2024     10:49           4149 CombinedDatabaseOperations.java
-|		-a----        13.12.2024     12:00           1994 CreateDatabase.java
-|		-a----        13.12.2024     10:16           1802 CreateTable.java
-|		-a----        16.12.2024     11:36          10053 DatabaseOperationsGUI.java
-|		-a----        13.12.2024     10:23            495 DatabaseUtils.java
-|		-a----        16.12.2024     10:02           2695 DeleteEntries.java
-|		-a----        13.12.2024     14:41            793 InsertData.java
-|		-a----        13.12.2024     12:01           3708 InsertTestData.java
-|		-a----        13.12.2024     14:35           6387 RetrieveStudents.java
-|		-a----        13.12.2024     10:20           1922 TestConnection.java
-|--pom.xml
-|--README.md
+
+src:main:java:lf8:
+	CombinedDatabaseOperations.java
+	CreateDatabase.java
+	CreateTable.java
+	DatabaseOperationsGUI.java
+	DatabaseUtils.java
+	DeleteEntries.java
+	InsertData.java
+	InsertTestData.java
+	RetrieveStudents.java
+	TestConnection.java
+pom.xml
+README.md
 
 Dependencies
 
