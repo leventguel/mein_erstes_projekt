@@ -67,16 +67,18 @@ In the CLI version, the data will be displayed in the terminal, and you can perf
 File Structure:
 
 src:main:java:lf8:
-	CombinedDatabaseOperations.java
-	CreateDatabase.java
-	CreateTable.java
-	DatabaseOperationsGUI.java
-	DatabaseUtils.java
-	DeleteEntries.java
-	InsertData.java
-	InsertTestData.java
-	RetrieveStudents.java
-	TestConnection.java
+
+	-CombinedDatabaseOperations.java
+	-CreateDatabase.java
+	-CreateTable.java
+	-DatabaseOperationsGUI.java
+	-DatabaseUtils.java
+	-DeleteEntries.java
+	-InsertData.java
+	-InsertTestData.java
+	-RetrieveStudents.java
+	-TestConnection.java
+
 pom.xml
 README.md
 
