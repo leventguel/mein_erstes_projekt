@@ -1,18 +1,19 @@
 Java Database Operations CLI/GUI
 
 This is a Java-based application that provides database operations with both Command-Line Interface (CLI) and Graphical User Interface (GUI) support. The application allows users to perform operations such as creating a database, inserting data, retrieving data, and deleting entries either through a console or a GUI.
+
 Features
 
     Create Database: Create a new database.
-        Insert Test Data: Insert sample data into the database.
-	    Retrieve Data: Retrieve and display data from the database in both CLI and GUI formats.
-	        Delete Entries: Delete entries from the database either by column value or delete all entries.
+    Insert Test Data: Insert sample data into the database.
+    Retrieve Data: Retrieve and display data from the database in both CLI and GUI formats.
+    Delete Entries: Delete entries from the database either by column value or delete all entries.
 
 Prerequisites
 
     Java 8 or newer: Make sure Java is installed on your system.
-        JDBC Database: The application interacts with a database using JDBC. Make sure you have a database connection set up (e.g., MySQL, PostgreSQL).
-	    Maven: The project uses Maven for dependency management and building.
+    JDBC Database: The application interacts with a database using JDBC. Make sure you have a database connection set up (e.g., MySQL, PostgreSQL).
+    Maven: The project uses Maven for dependency management and building.
 
 Getting Started
 Clone the repository
@@ -25,6 +26,7 @@ Build the project using Maven
 mvn clean install or mvn clean compile
 
 Running the Application
+
 GUI Version
 
 To run the GUI version of the application, simply execute the following:
@@ -32,6 +34,7 @@ To run the GUI version of the application, simply execute the following:
 mvn exec:java "-Dexec.mainClass=lf8.DatabaseOperationsGUI"
 
 or mvn exec:java "-Dexec.mainClass=lf8.DatabaseOperationsGUI" "-DuseGui=False"
+/* currently this is not implemented correctly */
 
 The GUI will launch, allowing you to perform operations through buttons and input fields.
 
