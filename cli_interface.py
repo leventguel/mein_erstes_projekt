@@ -6,9 +6,7 @@ from translations import MENU_TRANSLATIONS
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import Completer, Completion, WordCompleter  # Ensure these are imported correctly
 from event_manager import FileImportEventManager
-
-# Create a global event manager instance
-event_manager = FileImportEventManager()
+import threading
 
 # CLIObserver class definition
 class CLIObserver:
@@ -41,6 +39,16 @@ class CommandCompleter(WordCompleter):
     def __init__(self, commands):
         super().__init__(commands, ignore_case=True)
 
+def flush_input():
+    """Flush the input buffer."""
+    try:
+        import msvcrt  # Windows
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import termios  # Linux/Unix
+        termios.tcflush(sys.stdin, termios.TCIFLUSH)
+        
 # Main CLI function
 def run_cli(event_manager):
     language = "en"  # Default session language
@@ -48,7 +56,7 @@ def run_cli(event_manager):
 
     # Register the observer for event handling
     cli_observer = CLIObserver()  # Initialize the observer
-    event_manager.register_observer(cli_observer)  # Register the observer to the event manager
+    event_manager.register("CLI-Observer", cli_observer)  # Register the observer to the event manager
 
     # CLI commands mapping
     cli_commands = {
@@ -66,6 +74,7 @@ def run_cli(event_manager):
         for key, command in cli_commands.items():
             print(f"{key}. {command}")
 
+        flush_input()
         # Prompt the user for their action
         choice = prompt(translations['choose_action'], completer=CommandCompleter(list(cli_commands.keys()))).strip()
 
@@ -76,7 +85,15 @@ def run_cli(event_manager):
             add_poem(language, title, content)
 
         elif choice == '2':
+            print("Launching the GUI to display poems...")
+            #app = PoemApp()
+            #app.show_all_poems_gui()  # Calling the method on the instance
+            #show_all_poems_gui()
             show_all_poems(language, output_to_cli=True, return_as_dict=False)  # Print poems to CLI
+            event_manager.wait_for_poems_displayed()  # Wait for GUI to complete
+            print("\nReturning to main menu...")
+            # Check if the poems were displayed in the GUI
+            #event_manager.signal_poems_displayed()  # Notify that GUI is done
 
         elif choice == '3':
             poem_id = prompt("Enter poem ID to delete: ").strip()

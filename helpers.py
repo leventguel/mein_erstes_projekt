@@ -1,10 +1,11 @@
 import sqlite3
+from datetime import datetime
 
 def connect_db(language):
-    """Establish a connection to the database."""
     db_name = f"poems_{language}.db"
     try:
-        return sqlite3.connect(db_name)
+        with sqlite3.connect(db_name) as conn:
+            return conn
     except sqlite3.Error as e:
         print(f"Error connecting to database: {e}")
         return None
@@ -18,7 +19,7 @@ def create_table(language):
         cursor = conn.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS poems (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
                 title TEXT NOT NULL,
                 content TEXT NOT NULL,
                 date_added TEXT NOT NULL,
@@ -31,8 +32,9 @@ def create_table(language):
     finally:
         conn.close()
 
-def insert_poem(language, title, content, date_added):
+def insert_poem(language, title, content):
     """Insert a new poem into the database."""
+    date_added = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Automatic timestamp
     create_table(language)  # Ensure the table is created
     conn = connect_db(language)
     if conn is None:
@@ -79,7 +81,7 @@ def recreate_table_preserve_order(language):
         # Step 1: Create a temporary table
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS poems_temp (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
             title TEXT NOT NULL,
             content TEXT NOT NULL,
             date_added TEXT NOT NULL,

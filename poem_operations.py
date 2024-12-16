@@ -1,9 +1,19 @@
+import os
+import sys
+import time
+import glob
 from datetime import datetime
+from prompt_toolkit.completion import Completion
 from langdetect import detect, LangDetectException
 from helpers import insert_poem, fetch_all_poems, delete_poem_by_id
 from prompt_toolkit import prompt
-import os
-import glob
+
+
+def check_file_exists(file_path):
+    if not os.path.exists(file_path):
+        print("Error: File not found.")
+        return False
+    return True
 
 def detect_language(content):
     """Detect the language of the content."""
@@ -70,24 +80,35 @@ def import_poem_from_file(language):
         file_path = prompt("Please enter the file path: ", completer=file_completer)
 
         # Check if the path exists
-        if not os.path.exists(file_path):
-            print("Error: File not found.")
+        if not check_file_exists(file_path):
             return
 
-        with open(file_path, 'r', encoding='utf-8') as file:
-            lines = file.readlines()
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                lines = file.readlines()
+        except UnicodeDecodeError:
+            try:
+                with open(file_path, 'r', encoding='ISO-8859-1') as file:
+                    lines = file.readlines()
+            except UnicodeDecodeError:
+                print("Error: Unable to read file due to encoding issues.")
+                return
 
+        # Strip empty lines before processing
+        lines = [line.strip() for line in lines if line.strip()]
+            
         # Assuming first line is the title, rest is content
-        if len(lines) < 2:
-            print("Error: File doesn't contain enough data (at least title and content required).")
-            return
+        # Ensure file contains at least a title and content
+        if len(lines) < 2 or not lines[0].strip() or not lines[1].strip():
+            print("Error: File must contain at least a title and content.")
+        return
 
         title = lines[0].strip()  # First line as title
         content = "".join(lines[1:]).strip()  # Rest as content
 
         # Add poem to database, including language
         add_poem(language, title, content)
-        print(f"Poem '{title}' imported successfully.")
+        print(f"Poem '{title}' imported successfully from {file_path}.")
 
     except Exception as e:
         print(f"Error importing poem: {e}")

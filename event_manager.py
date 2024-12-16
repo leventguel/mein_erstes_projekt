@@ -1,63 +1,91 @@
 # event_manager.py
+from threading import Event
 class EventManager:
+    _instance = None
+    _observers = {}
+    
     def __init__(self):
-        self._observers = []
+        self._observers = {}
+        self._poems_displayed_event = Event()
 
-    def register(self, observer):
-        """Register an observer."""
-        if observer not in self._observers:
-            self._observers.append(observer)
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
-    def unregister(self, observer):
-        """Unregister an observer."""
-        try:
-            self._observers.remove(observer)
-        except ValueError:
-            pass
+    def reset(self):
+        """Reset the state of the event manager."""
+        self._observers = {}  # Clear all observers when resetting
 
-    def notify(self, event, data=None):
-        """Notify all observers about an event."""
-        for observer in self._observers:
-            observer.update(event, data)
+    def register(self, event, observer):
+        """Register an observer for a specific event."""
+        if event not in self._observers:
+            self._observers[event] = []
+            self._observers[event].append(observer)
+
+    def unregister(self, event, observer):
+        """Unregister an observer for a specific event type."""
+        if event in self._observers and observer in self._observers[event]:
+            self._observers[event].remove(observer)
+
+    def signal_poems_displayed(self):
+        print("Signaling CLI: Poems were displayed.")
+        self._poems_displayed_event.set()
+        
+    def wait_for_poems_displayed(self):
+        print("CLI is waiting for GUI to finish displaying poems...")
+        self._poems_displayed_event.wait()  # Block until event is triggered
+        self._poems_displayed_event.clear()  # Reset for future use
+
+    def is_poems_displayed(self):
+        return self._poems_displayed_event
+
+    def notify(self, event, data):
+        """Notify all registered observers of an event."""
+        if event in self._observers:
+            for observer in self._observers[event]:
+                observer.update(event, data)
 
 class FileImportEventManager:
-    def __init__(self):
-        self.observers = []  # List to hold observers
+    def __init__(self, event_manager):
+        """Specialized event manager for file imports."""
+        self.event_manager = event_manager
         self.file_import_active = False
         self.file_path = None
 
     def register_observer(self, observer):
-        """Registers an observer to be notified of events."""
-        if observer not in self.observers:
-            self.observers.append(observer)
+        """Register an observer for file import events."""
+        self.event_manager.register("file_import_status_changed", observer)
 
     def remove_observer(self, observer):
-        """Removes an observer."""
-        if observer in self.observers:
-            self.observers.remove(observer)
-
-    def notify_observers(self, event, data):
-        """Notifies all registered observers of an event."""
-        for observer in self.observers:
-            observer.update(event, data)
+        """Remove an observer for file import events."""
+        self.event_manager.unregister("file_import_status_changed", observer)
 
     def set_file_import_status(self, active, file_path=None):
-        """Sets the status of the file import operation and notifies observers."""
+        """Set file import status and notify observers."""
         self.file_import_active = active
         self.file_path = file_path
-        self.notify_observers("file_import_status_changed", {
+        self.event_manager.notify("file_import_status_changed", {
             "active": self.file_import_active,
             "file_path": self.file_path
         })
 
     def is_import_active(self):
-        """Returns the current status of the file import operation."""
+        """Check if file import is active."""
         return self.file_import_active
 
     def start_import(self):
-        """Start a new file import."""
+        """Start file import."""
         self.set_file_import_status(True)
 
     def finish_import(self):
-        """Finish the current file import."""
+        """Finish file import."""
         self.set_file_import_status(False)
+
+    def error_occurred(self, error_message):
+        self.event_manager.notify("file_import_error", {"error": error_message})
+
+class FileImportObserver:
+    def update(self, event_type, data):
+        if event_type == "file_import_status_changed":
+            print(f"File import status changed: {data}")
