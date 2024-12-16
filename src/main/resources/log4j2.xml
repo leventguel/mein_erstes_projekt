@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <!-- Appenders define where the log messages will be sent -->
+  <Appenders>
+    <!-- Console Appender -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout>
+	<!-- Log format (you can adjust this to your needs) -->
+	<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level: %msg%n</Pattern>
+      </PatternLayout>
+    </Console>
+
+    <!-- File Appender (optional) -->
+    <File name="File" fileName="logs/app.log">
+      <PatternLayout>
+	<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level: %msg%n</Pattern>
+      </PatternLayout>
+    </File>
+  </Appenders>
+
+  <!-- Loggers define which logs are processed -->
+  <Loggers>
+    <!-- Root Logger (this will log everything) -->
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Root>
+
+    <!-- Example of a logger with custom logging level -->
+    <Logger name="com.example" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+  </Loggers>
+</Configuration>

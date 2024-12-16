@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.tn.uebungen</groupId> <!-- Change this to your group ID -->
+  <artifactId>lf8</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <!-- MariaDB JDBC Driver -->
+    <dependency>
+      <groupId>org.mariadb.jdbc</groupId>
+      <artifactId>mariadb-java-client</artifactId>
+      <version>3.5.1</version>
+    </dependency>
+
+    <!-- SLF4J API (Abstraction layer) -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+
+    <!-- Logback Classic (Default provider for SLF4J) -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+
+    <!-- Logback Core (Required for Logback Classic) -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+
+    <!-- Optional Java Util Logging (JDK14) for switching -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-jdk14</artifactId>
+      <version>2.0.0</version>
+      <scope>provided</scope> <!-- Optional, will not be included unless needed -->
+    </dependency>
+
+    <!-- Optional Log4j2 API and Core (for switching to Log4j2) -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.20.0</version>
+      <scope>provided</scope> <!-- Optional, will not be included unless needed -->
+    </dependency>
+
+    <!-- Optional Log4j2 SLF4J Binding (for switching to Log4j2) -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.20.0</version>
+      <scope>provided</scope> <!-- Optional, will not be included unless needed -->
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Exec Maven Plugin to run Java class -->
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>3.0.0</version> <!-- Make sure this version is up to date -->
+	<executions>
+	  <execution>
+	    <goals>
+	      <goal>java</goal>
+	    </goals>
+	    <configuration>
+	      <mainClass>lf8.TestConnection</mainClass> <!-- Fully qualified class name -->
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>3.10.1</version> <!-- use the latest stable version -->
+	<configuration>
+	  <compilerArgs>
+	    <arg>-Xlint:unchecked</arg>
+	  </compilerArgs>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
